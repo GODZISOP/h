@@ -19,19 +19,19 @@ body {
 /* Container styling for centering forms */
 .container {
   position: relative;
-  perspective: 1000px;
+  width: 350px;
+  height: 450px;
+  perspective: 1000px; /* Perspective for 3D effect */
 }
 
 /* Form wrapper styling */
 .form-wrapper {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 350px;
-  height: 450px; /* Set a fixed height for the form wrapper */
-  position: relative;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.6s ease;
+  transform: rotateY(0deg); /* Initial state */
 }
 
 /* Form styling */
@@ -41,7 +41,10 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden; /* Ensure backface is hidden */
+  backface-visibility: hidden; /* Hide the back face */
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Heading styling */
@@ -132,23 +135,29 @@ body {
 }
 
 /* Switch link styling */
-.switch a {
+.switch-link {
   color: #007bff;
   text-decoration: none;
   font-weight: bold;
+  cursor: pointer;
 }
 
-.switch a:hover {
+.switch-link:hover {
   text-decoration: underline;
 }
 
 /* Flip card effect for form switch */
+#login-toggle:checked ~ .form-wrapper {
+  transform: rotateY(0deg); /* Front side (Login) */
+}
+
+#signup-toggle:checked ~ .form-wrapper {
+  transform: rotateY(180deg); /* Back side (Signup) */
+}
+
 #login-form {
+  transform: rotateY(0deg); /* Front side */
 }
 
 #signup-form {
-}
-
-/* Flip card container - manage flipping */
-.container.flip .form-wrapper {
 }
